@@ -6,6 +6,6 @@ import com.infoechebo.cryptoinfo.data.remote.dto.CoinTickersDto
 
 interface CoinRepository {
     suspend fun getCoin(): List<CoinDto>
-    suspend fun getCoinDetails(): CoinDetailsDto
-    suspend fun getCoinTickers(): CoinTickersDto
+    suspend fun getCoinDetails(coinId: String): CoinDetailsDto
+    suspend fun getCoinTickers(coinId: String): CoinTickersDto
 }
