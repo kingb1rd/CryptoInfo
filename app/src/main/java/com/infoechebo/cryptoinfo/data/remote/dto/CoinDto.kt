@@ -3,21 +3,13 @@ package com.infoechebo.cryptoinfo.data.remote.dto
 import com.google.gson.annotations.SerializedName
 
 data class CoinDto(
-    @SerializedName("beta_value")
-    val betaValue: Double,
-    @SerializedName("circulating_supply")
-    val circulatingSupply: Int,
-    @SerializedName("first_data_at")
-    val firstDataAt: String,
     val id: String,
-    @SerializedName("last_updated")
-    val lastUpdated: String,
-    @SerializedName("max_supply")
-    val maxSupply: Int,
+    @SerializedName("is_active")
+    val isActive: Boolean,
+    @SerializedName("is_new")
+    val isNew: Boolean,
     val name: String,
-    val quotesDto: Quotes,
     val rank: Int,
     val symbol: String,
-    @SerializedName("total_supply")
-    val totalSupply: Int
+    val type: String
 )
