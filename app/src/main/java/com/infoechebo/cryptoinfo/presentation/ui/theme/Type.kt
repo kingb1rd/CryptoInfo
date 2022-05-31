@@ -1,4 +1,4 @@
-package com.infoechebo.cryptoinfo.ui.theme
+package com.infoechebo.cryptoinfo.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
