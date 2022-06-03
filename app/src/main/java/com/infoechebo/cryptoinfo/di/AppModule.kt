@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 val appModule = module {
     single<CoinRepository> {
-        CoinRepositoryImpl(get())
+        CoinRepositoryImpl(get(), get())
     }
 
     single {

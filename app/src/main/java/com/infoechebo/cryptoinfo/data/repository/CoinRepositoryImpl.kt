@@ -8,6 +8,7 @@ import com.infoechebo.cryptoinfo.domain.model.CoinDetails
 import com.infoechebo.cryptoinfo.domain.model.CoinPrice
 import com.infoechebo.cryptoinfo.domain.repository.CoinRepository
 import com.infoechebo.cryptoinfo.mapper.toCoin
+import com.infoechebo.cryptoinfo.mapper.toCoinDetails
 import com.infoechebo.cryptoinfo.mapper.toCoinEntity
 import com.infoechebo.cryptoinfo.mapper.toCoinPrice
 import kotlinx.coroutines.flow.Flow
@@ -45,7 +46,16 @@ class CoinRepositoryImpl(
     }
 
     override suspend fun getCoinDetails(coinId: String): Flow<Resource<CoinDetails>> = flow {
+        emit(Resource.Loading())
 
+        try {
+            val coinDetails = api.getCoinDetails(coinId).toCoinDetails()
+            emit(Resource.Success(data = coinDetails))
+        } catch (e: HttpException) {
+            emit(Resource.Error(message = "Oops, something went wrong"))
+        } catch (e: IOException) {
+            emit(Resource.Error(message = "Couldn't reach the server. Check your internet connection"))
+        }
     }
 
     override suspend fun getCoinTickers(coinId: String): Flow<Resource<CoinPrice>> = flow {
