@@ -1,28 +1,30 @@
 ## CryptoInfo
 ### Android app that provides list of crypto assets with their respective price and details using CoinPaprika API
 
-Libraries / technologies used:
+Libraries, technologies & patterns used:
 
 • Kotlin
 
-• Clean architecture
+• Clean Architecture
 
 • SOLID
 
-• Clean code
+• Clean Code
+
+• Single Source Of Truth (SSOT)
 
 • Jetpack Compose
 
 • MVVM
 
-• Kotlin flows
+• Kotlin Flows
 
-• Kotlin coroutines
+• Kotlin Coroutines
 
-• Dependecy injection with koin
+• Dependecy injection (Koin)
 
-• Retrofit for network requests
+• Retrofit2
 
 • Unit testing
 
-• Room for caching
+• Room (caching)
