@@ -45,7 +45,7 @@ class CoinRepositoryImpl(
         emit(Resource.Success(newCoins))
     }
 
-    override suspend fun getCoinDetails(coinId: String): Flow<Resource<CoinDetails>> = flow {
+    override fun getCoinDetails(coinId: String): Flow<Resource<CoinDetails>> = flow {
         emit(Resource.Loading())
 
         try {
@@ -58,7 +58,7 @@ class CoinRepositoryImpl(
         }
     }
 
-    override suspend fun getCoinTickers(coinId: String): Flow<Resource<CoinPrice>> = flow {
+    override fun getCoinTickers(coinId: String): Flow<Resource<CoinPrice>> = flow {
         emit(Resource.Loading())
 
         try {
