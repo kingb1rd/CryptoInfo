@@ -3,8 +3,6 @@ package com.infoechebo.cryptoinfo.data.remote.dto
 import com.google.gson.annotations.SerializedName
 
 data class CoinDetailsDto(
-    val contract: String,
-    val contracts: List<Contract>,
     val description: String,
     @SerializedName("development_status")
     val developmentStatus: String,
@@ -30,8 +28,6 @@ data class CoinDetailsDto(
     val openSource: Boolean,
     @SerializedName("org_structure")
     val orgStructure: String,
-    val parent: Parent,
-    val platform: String,
     @SerializedName("proof_type")
     val proofType: String,
     val rank: Int,

@@ -1,12 +1,13 @@
 package com.infoechebo.cryptoinfo.data.remote.dto
 
+
 import com.google.gson.annotations.SerializedName
 
 data class USD(
     @SerializedName("ath_date")
     val athDate: String,
     @SerializedName("ath_price")
-    val athPrice: Int,
+    val athPrice: Double,
     @SerializedName("market_cap")
     val marketCap: Long,
     @SerializedName("market_cap_change_24h")
@@ -14,9 +15,9 @@ data class USD(
     @SerializedName("percent_change_12h")
     val percentChange12h: Double,
     @SerializedName("percent_change_15m")
-    val percentChange15m: Int,
+    val percentChange15m: Double,
     @SerializedName("percent_change_1h")
-    val percentChange1h: Int,
+    val percentChange1h: Double,
     @SerializedName("percent_change_1y")
     val percentChange1y: Double,
     @SerializedName("percent_change_24h")
@@ -24,9 +25,9 @@ data class USD(
     @SerializedName("percent_change_30d")
     val percentChange30d: Double,
     @SerializedName("percent_change_30m")
-    val percentChange30m: Int,
+    val percentChange30m: Double,
     @SerializedName("percent_change_6h")
-    val percentChange6h: Int,
+    val percentChange6h: Double,
     @SerializedName("percent_change_7d")
     val percentChange7d: Double,
     @SerializedName("percent_from_price_ath")

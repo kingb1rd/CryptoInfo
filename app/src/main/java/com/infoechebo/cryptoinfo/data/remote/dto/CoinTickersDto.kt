@@ -6,18 +6,18 @@ data class CoinTickersDto(
     @SerializedName("beta_value")
     val betaValue: Double,
     @SerializedName("circulating_supply")
-    val circulatingSupply: Int,
+    val circulatingSupply: Long,
     @SerializedName("first_data_at")
     val firstDataAt: String,
     val id: String,
     @SerializedName("last_updated")
     val lastUpdated: String,
     @SerializedName("max_supply")
-    val maxSupply: Int,
+    val maxSupply: Long,
     val name: String,
     val quotes: Quotes,
     val rank: Int,
     val symbol: String,
     @SerializedName("total_supply")
-    val totalSupply: Int
+    val totalSupply: Long
 )

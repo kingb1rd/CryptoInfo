@@ -27,12 +27,12 @@ fun CoinItem(
             .padding(20.dp), horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = "${coin.rank} ${coin.name} (${coin.symbol})",
+            text = "${coin.rank}. ${coin.name} (${coin.symbol})",
             style = MaterialTheme.typography.body1,
             overflow = TextOverflow.Ellipsis
         )
         Text(
-            text = "${coin.price}",
+            text = "$${coin.price}",
             textAlign = TextAlign.End,
             style = MaterialTheme.typography.body1,
             modifier = Modifier.align(Alignment.CenterVertically)

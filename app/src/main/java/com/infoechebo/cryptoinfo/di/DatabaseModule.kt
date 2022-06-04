@@ -15,7 +15,6 @@ val databaseModule = module {
     }
 
     single {
-        val db = get<CryptoInfoDatabase>()
-        db.dao
+        get<CryptoInfoDatabase>().dao
     }
 }
