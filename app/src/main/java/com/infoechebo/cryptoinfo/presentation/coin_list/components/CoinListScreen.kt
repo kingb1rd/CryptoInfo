@@ -15,13 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.infoechebo.cryptoinfo.presentation.Screen
 import com.infoechebo.cryptoinfo.presentation.coin_list.CoinListViewModel
-import org.koin.androidx.compose.get
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun CoinListScreen(
     navController: NavController,
-    viewModel: CoinListViewModel = get()
+    viewModel: CoinListViewModel = getViewModel()
 ) {
     val state = viewModel.state.value
 
@@ -31,7 +32,7 @@ fun CoinListScreen(
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(state.coins) { coin ->
                 CoinItem(coin = coin, onItemClick = {
-
+                    navController.navigate(Screen.CoinDetailsScreen.route + "/${coin.coinId}")
                 })
             }
         }

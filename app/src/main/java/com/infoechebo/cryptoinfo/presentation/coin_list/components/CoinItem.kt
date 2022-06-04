@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.infoechebo.cryptoinfo.domain.model.Coin
@@ -30,9 +32,10 @@ fun CoinItem(
             overflow = TextOverflow.Ellipsis
         )
         Text(
-            text = "1. Bitcoin (BTC)",
+            text = "${coin.price}",
+            textAlign = TextAlign.End,
             style = MaterialTheme.typography.body1,
-            overflow = TextOverflow.Ellipsis
+            modifier = Modifier.align(Alignment.CenterVertically)
         )
     }
 }
