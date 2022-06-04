@@ -1,8 +1,7 @@
 package com.infoechebo
 
 import android.app.Application
-import com.infoechebo.cryptoinfo.di.appModule
-import com.infoechebo.cryptoinfo.di.networkModule
+import com.infoechebo.cryptoinfo.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -14,7 +13,14 @@ class CryptoInfoApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@CryptoInfoApplication)
-            modules(networkModule, appModule)
+
+            modules(
+                apiModule,
+                databaseModule,
+                repositoryModule,
+                useCaseModule,
+                viewModelModule
+            )
         }
     }
 }
