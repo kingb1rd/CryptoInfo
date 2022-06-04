@@ -10,9 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.infoechebo.cryptoinfo.presentation.Screen
 import com.infoechebo.cryptoinfo.presentation.coin_list.CoinListViewModel
 import org.koin.androidx.compose.getViewModel
@@ -23,15 +24,21 @@ fun CoinListScreen(
 ) {
     val viewModel = getViewModel<CoinListViewModel>()
     val state = viewModel.state.value
+    val isRefreshing = viewModel.state.value.isRefreshing
 
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(state.coins) { coin ->
-                CoinItem(coin = coin, onItemClick = {
-                    navController.navigate(Screen.CoinDetailsScreen.route + "/${coin.coinId}")
-                })
+        SwipeRefresh(
+            state = rememberSwipeRefreshState(isRefreshing),
+            onRefresh = { viewModel.onRefresh() }
+        ) {
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                items(state.coins) { coin ->
+                    CoinItem(coin = coin, onItemClick = {
+                        navController.navigate(Screen.CoinDetailsScreen.route + "/${coin.coinId}")
+                    })
+                }
             }
         }
 

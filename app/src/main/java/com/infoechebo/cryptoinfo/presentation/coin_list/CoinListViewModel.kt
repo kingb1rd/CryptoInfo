@@ -17,6 +17,12 @@ class CoinListViewModel(private val getCoinsUseCase: GetCoinsUseCase) : ViewMode
         getCoins()
     }
 
+    fun onRefresh() {
+        _state.value = state.value.copy(isRefreshing = true)
+        getCoins()
+        _state.value = state.value.copy(isRefreshing = false)
+    }
+
     private fun getCoins() {
         getCoinsUseCase().onEach { result ->
             when (result) {
