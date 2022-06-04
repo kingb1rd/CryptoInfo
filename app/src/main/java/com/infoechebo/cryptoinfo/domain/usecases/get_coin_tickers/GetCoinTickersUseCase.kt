@@ -1,7 +1,6 @@
 package com.infoechebo.cryptoinfo.domain.usecases.get_coin_tickers
 
 import com.infoechebo.cryptoinfo.common.Resource
-import com.infoechebo.cryptoinfo.domain.model.CoinPrice
 import com.infoechebo.cryptoinfo.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.Flow
 
