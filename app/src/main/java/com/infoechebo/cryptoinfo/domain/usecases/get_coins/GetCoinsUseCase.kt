@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 class GetCoinsUseCase(private val repository: CoinRepository) {
     operator fun invoke(): Flow<Resource<List<Coin>>> {
-        return repository.getCoins()
+        return repository.getCoinsTickers()
     }
 }

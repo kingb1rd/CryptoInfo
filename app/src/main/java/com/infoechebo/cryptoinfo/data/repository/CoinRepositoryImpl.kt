@@ -8,6 +8,7 @@ import com.infoechebo.cryptoinfo.domain.model.CoinDetails
 import com.infoechebo.cryptoinfo.domain.repository.CoinRepository
 import com.infoechebo.cryptoinfo.mapper.toCoin
 import com.infoechebo.cryptoinfo.mapper.toCoinDetails
+import com.infoechebo.cryptoinfo.mapper.toCoinEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

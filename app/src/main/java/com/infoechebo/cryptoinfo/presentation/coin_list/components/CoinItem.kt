@@ -25,6 +25,11 @@ fun CoinItem(
             .padding(20.dp), horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
+            text = "${coin.rank} ${coin.name} (${coin.symbol})",
+            style = MaterialTheme.typography.body1,
+            overflow = TextOverflow.Ellipsis
+        )
+        Text(
             text = "1. Bitcoin (BTC)",
             style = MaterialTheme.typography.body1,
             overflow = TextOverflow.Ellipsis

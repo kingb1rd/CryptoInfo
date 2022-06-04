@@ -16,23 +16,13 @@ fun CoinEntity.toCoin(): Coin {
     )
 }
 
-fun Coin.toCoinEntity(): CoinEntity {
-    return CoinEntity(
-        coinId = coinId,
-        name = name,
-        symbol = symbol,
-        rank = rank,
-        price = price
-    )
-}
-
 fun CoinTickersDto.toCoin(): Coin {
     return Coin(
         coinId = id,
         name = name,
         symbol = symbol,
         rank = rank,
-        price = quotes.uSD.price
+        price = quotes.uSD.price.round()
     )
 }
 
@@ -42,7 +32,7 @@ fun CoinTickersDto.toCoinEntity(): CoinEntity {
         name = name,
         symbol = symbol,
         rank = rank,
-        price = quotes.uSD.price
+        price = quotes.uSD.price.round()
     )
 }
 
@@ -55,3 +45,5 @@ fun CoinDetailsDto.toCoinDetails(): CoinDetails {
         team = team
     )
 }
+
+fun Double.round(decimals: Int = 2): Double = "%.${decimals}f".format(this).toDouble()

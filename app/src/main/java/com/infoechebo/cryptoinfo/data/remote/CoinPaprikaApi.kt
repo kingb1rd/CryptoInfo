@@ -1,6 +1,7 @@
 package com.infoechebo.cryptoinfo.data.remote
 
 import com.infoechebo.cryptoinfo.data.remote.dto.CoinDetailsDto
+import com.infoechebo.cryptoinfo.data.remote.dto.CoinTickersDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
