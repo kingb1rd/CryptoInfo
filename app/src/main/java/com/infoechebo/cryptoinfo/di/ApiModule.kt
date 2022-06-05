@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val apiModule = module {
     single {
         Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(Constants.API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(CoinPaprikaApi::class.java)

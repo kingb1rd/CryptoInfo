@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.infoechebo.cryptoinfo.common.Constants
+import com.infoechebo.cryptoinfo.common.Constants.PARAM_COIN_ID
 import com.infoechebo.cryptoinfo.common.Resource
 import com.infoechebo.cryptoinfo.domain.usecases.get_coin_details.GetCoinDetailsUseCase
 import kotlinx.coroutines.flow.onEach
@@ -19,7 +19,7 @@ class CoinDetailsViewModel(
     val state: State<CoinDetailsState> = _state
 
     init {
-        savedStateHandle.get<String>(Constants.PARAM_COIN_ID)?.let { coinId ->
+        savedStateHandle.get<String>(PARAM_COIN_ID)?.let { coinId ->
             getCoinDetailsAndPrice(coinId)
         }
     }

@@ -6,7 +6,9 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun CoinDetailsScreen(
-    viewModel: CoinDetailsViewModel = getViewModel()
 ) {
+    val viewModel = getViewModel<CoinDetailsViewModel>()
+    val state = viewModel.state.value
+
 
 }

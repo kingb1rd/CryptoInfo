@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.infoechebo.cryptoinfo.common.Resource
 import com.infoechebo.cryptoinfo.domain.usecases.get_coins.GetCoinsUseCase
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -13,14 +15,17 @@ class CoinListViewModel(private val getCoinsUseCase: GetCoinsUseCase) : ViewMode
     private val _state = mutableStateOf(CoinListState())
     val state: State<CoinListState> = _state
 
+    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
+
     init {
         getCoins()
     }
 
     fun onRefresh() {
-        _state.value = state.value.copy(isRefreshing = true)
+        _state.value = CoinListState(isRefreshing = true)
         getCoins()
-        _state.value = state.value.copy(isRefreshing = false)
+        _state.value = CoinListState(isRefreshing = false)
     }
 
     private fun getCoins() {
@@ -30,8 +35,10 @@ class CoinListViewModel(private val getCoinsUseCase: GetCoinsUseCase) : ViewMode
                     _state.value = CoinListState(coins = result.data ?: emptyList())
                 }
                 is Resource.Error -> {
-                    _state.value = CoinListState(
-                        error = result.message ?: "Unexpected error ocurred"
+                    _eventFlow.emit(
+                        UiEvent.ShowSnackbar(
+                            message = result.message ?: "No internet connection"
+                        )
                     )
                 }
                 is Resource.Loading -> {
@@ -39,5 +46,9 @@ class CoinListViewModel(private val getCoinsUseCase: GetCoinsUseCase) : ViewMode
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    sealed class UiEvent {
+        data class ShowSnackbar(val message: String) : UiEvent()
     }
 }
