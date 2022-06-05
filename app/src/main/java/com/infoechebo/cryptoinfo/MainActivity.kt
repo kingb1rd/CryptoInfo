@@ -8,7 +8,7 @@ import androidx.compose.material.Surface
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.infoechebo.cryptoinfo.presentation.Screen
+import com.infoechebo.cryptoinfo.presentation.ScreenRoute
 import com.infoechebo.cryptoinfo.presentation.coin_details.components.CoinDetailsScreen
 import com.infoechebo.cryptoinfo.presentation.coin_list.components.CoinListScreen
 import com.infoechebo.cryptoinfo.presentation.ui.theme.CryptoInfoTheme
@@ -23,16 +23,16 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.CoinListScreen.route
+                        startDestination = ScreenRoute.CoinListScreenRoute.route
                     ) {
                         composable(
-                            route = Screen.CoinListScreen.route
+                            route = ScreenRoute.CoinListScreenRoute.route
                         ) {
                             CoinListScreen(navController)
                         }
 
                         composable(
-                            route = Screen.CoinDetailsScreen.route + "/{coinId}"
+                            route = ScreenRoute.CoinDetailsScreenRoute.route + "/{coinId}"
                         ) {
                             CoinDetailsScreen()
                         }

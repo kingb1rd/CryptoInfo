@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.infoechebo.cryptoinfo.common.Resource
 import com.infoechebo.cryptoinfo.domain.usecases.get_coins.GetCoinsUseCase
+import com.infoechebo.cryptoinfo.presentation.UiEvent
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
@@ -46,9 +47,5 @@ class CoinListViewModel(private val getCoinsUseCase: GetCoinsUseCase) : ViewMode
                 }
             }
         }.launchIn(viewModelScope)
-    }
-
-    sealed class UiEvent {
-        data class ShowSnackbar(val message: String) : UiEvent()
     }
 }

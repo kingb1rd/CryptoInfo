@@ -1,5 +1,6 @@
 package com.infoechebo.cryptoinfo.di
 
+import androidx.lifecycle.SavedStateHandle
 import com.infoechebo.cryptoinfo.presentation.coin_details.CoinDetailsViewModel
 import com.infoechebo.cryptoinfo.presentation.coin_list.CoinListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -10,7 +11,7 @@ val viewModelModule = module {
         CoinListViewModel(get())
     }
 
-    viewModel {
-        CoinDetailsViewModel(get(), get())
+    viewModel { (handle: SavedStateHandle) ->
+        CoinDetailsViewModel(get(), handle)
     }
 }

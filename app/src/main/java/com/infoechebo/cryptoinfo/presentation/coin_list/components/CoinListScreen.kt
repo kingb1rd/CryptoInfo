@@ -16,7 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import com.infoechebo.cryptoinfo.presentation.Screen
+import com.infoechebo.cryptoinfo.presentation.ScreenRoute
+import com.infoechebo.cryptoinfo.presentation.UiEvent
 import com.infoechebo.cryptoinfo.presentation.coin_list.CoinListViewModel
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
@@ -34,7 +35,7 @@ fun CoinListScreen(
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
-                is CoinListViewModel.UiEvent.ShowSnackbar -> {
+                is UiEvent.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         event.message
                     )
@@ -56,7 +57,7 @@ fun CoinListScreen(
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(state.coins) { coin ->
                         CoinItem(coin = coin, onItemClick = {
-                            navController.navigate(Screen.CoinDetailsScreen.route + "/${coin.coinId}")
+                            navController.navigate(ScreenRoute.CoinDetailsScreenRoute.route + "/${coin.coinId}")
                         })
                     }
                 }

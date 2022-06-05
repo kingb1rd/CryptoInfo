@@ -38,11 +38,13 @@ fun CoinTickersDto.toCoinEntity(): CoinEntity {
 
 fun CoinDetailsDto.toCoinDetails(): CoinDetails {
     return CoinDetails(
+        rank = rank,
+        name = name,
+        symbol = symbol,
         description = description,
-        isNew = isNew,
         isActive = isActive,
         tags = tags.map { it.name },
-        team = team
+        teamMembers = teamMember
     )
 }
 

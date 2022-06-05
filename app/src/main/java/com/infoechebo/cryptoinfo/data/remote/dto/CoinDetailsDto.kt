@@ -35,7 +35,7 @@ data class CoinDetailsDto(
     val startedAt: String,
     val symbol: String,
     val tags: List<Tag>,
-    val team: List<Team>,
+    val teamMember: List<TeamMember>,
     val type: String,
     val whitepaper: Whitepaper
 )

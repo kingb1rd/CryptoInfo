@@ -1,11 +1,13 @@
 package com.infoechebo.cryptoinfo.domain.model
 
-import com.infoechebo.cryptoinfo.data.remote.dto.Team
+import com.infoechebo.cryptoinfo.data.remote.dto.TeamMember
 
 data class CoinDetails(
+    val rank: Int,
+    val name: String,
+    val symbol: String,
     val description: String,
-    val isNew: Boolean,
     val isActive: Boolean,
     val tags: List<String>,
-    val team: List<Team>
+    val teamMembers: List<TeamMember>
 )
