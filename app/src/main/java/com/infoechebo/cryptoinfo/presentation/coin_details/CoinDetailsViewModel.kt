@@ -1,9 +1,9 @@
 package com.infoechebo.cryptoinfo.presentation.coin_details
 
+import android.os.Bundle
 import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.infoechebo.cryptoinfo.common.Constants.PARAM_COIN_ID
@@ -12,12 +12,13 @@ import com.infoechebo.cryptoinfo.domain.usecases.get_coin_details.GetCoinDetails
 import com.infoechebo.cryptoinfo.presentation.UiEvent
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class CoinDetailsViewModel(
     private val getCoinDetailsUseCase: GetCoinDetailsUseCase,
-    savedStateHandle: SavedStateHandle
+    arguments: Bundle
 ) : ViewModel() {
 
     private val _state = mutableStateOf(CoinDetailsState())
@@ -27,32 +28,28 @@ class CoinDetailsViewModel(
     val eventFlow = _eventFlow.asSharedFlow()
 
     init {
-        val id = savedStateHandle.get<String>(PARAM_COIN_ID)
-        Log.d("Args", id.toString())
-        savedStateHandle.get<String>(PARAM_COIN_ID)?.let { coinId ->
-            getCoinDetailsAndPrice(coinId)
+        arguments.getString(PARAM_COIN_ID)?.let { coinId ->
+            getCoinDetails(coinId)
         }
     }
 
-    private fun getCoinDetailsAndPrice(coinId: String) {
-        viewModelScope.launch {
-            getCoinDetailsUseCase(coinId).onEach { result ->
-                when (result) {
-                    is Resource.Success -> {
-                        _state.value = CoinDetailsState(coinDetails = result.data)
-                    }
-                    is Resource.Error -> {
-                        _eventFlow.emit(
-                            UiEvent.ShowSnackbar(
-                                message = result.message ?: "Unknown error"
-                            )
+    private fun getCoinDetails(coinId: String) {
+        getCoinDetailsUseCase(coinId).onEach { result ->
+            when (result) {
+                is Resource.Success -> {
+                    _state.value = CoinDetailsState(coinDetails = result.data)
+                }
+                is Resource.Error -> {
+                    _eventFlow.emit(
+                        UiEvent.ShowSnackbar(
+                            message = result.message ?: "Unknown error"
                         )
-                    }
-                    is Resource.Loading -> {
-                        _state.value = CoinDetailsState(isLoading = true)
-                    }
+                    )
+                }
+                is Resource.Loading -> {
+                    _state.value = CoinDetailsState(isLoading = true)
                 }
             }
-        }
+        }.launchIn(viewModelScope)
     }
 }

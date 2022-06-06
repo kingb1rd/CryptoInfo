@@ -12,16 +12,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.google.accompanist.flowlayout.FlowRow
 import com.infoechebo.cryptoinfo.presentation.UiEvent
 import com.infoechebo.cryptoinfo.presentation.coin_details.CoinDetailsViewModel
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun CoinDetailsScreen(
+    navController: NavController,
 ) {
-    val viewModel = getViewModel<CoinDetailsViewModel>()
+    val viewModel: CoinDetailsViewModel =
+        getViewModel(parameters = { parametersOf(navController.currentBackStackEntry?.arguments) })
     val state = viewModel.state.value
 
     val scaffoldState = rememberScaffoldState()
@@ -77,7 +81,7 @@ fun CoinDetailsScreen(
                         crossAxisSpacing = 10.dp,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        coinDetails.tags.forEach {
+                        coinDetails.tags?.forEach {
                             CoinTag(tag = it)
                         }
                     }
@@ -88,7 +92,7 @@ fun CoinDetailsScreen(
                     )
                     Spacer(modifier = Modifier.height(15.dp))
                 }
-                items(coinDetails.teamMembers) { teamMember ->
+                items(coinDetails.team) { teamMember ->
                     TeamListItem(
                         teamMember = teamMember,
                         modifier = Modifier
