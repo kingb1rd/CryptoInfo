@@ -9,6 +9,6 @@ import com.infoechebo.cryptoinfo.data.local.entity.CoinEntity
     version = 1,
     exportSchema = false
 )
-abstract class CryptoInfoDatabase : RoomDatabase(){
+abstract class CryptoInfoDatabase : RoomDatabase() {
     abstract val dao: CoinDao
 }

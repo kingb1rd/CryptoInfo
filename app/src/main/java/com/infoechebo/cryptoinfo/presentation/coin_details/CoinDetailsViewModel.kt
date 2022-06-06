@@ -1,7 +1,6 @@
 package com.infoechebo.cryptoinfo.presentation.coin_details
 
 import android.os.Bundle
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -14,7 +13,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 class CoinDetailsViewModel(
     private val getCoinDetailsUseCase: GetCoinDetailsUseCase,
