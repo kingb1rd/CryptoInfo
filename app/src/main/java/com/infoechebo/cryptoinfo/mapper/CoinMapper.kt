@@ -44,7 +44,7 @@ fun CoinDetailsDto.toCoinDetails(): CoinDetails {
         description = description,
         isActive = isActive,
         tags = tags.map { it.name },
-        teamMembers = teamMember
+        team = team
     )
 }
 

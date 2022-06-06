@@ -45,10 +45,9 @@ class CoinRepositoryImpl(
 
     override fun getCoinDetails(coinId: String): Flow<Resource<CoinDetails>> = flow {
         emit(Resource.Loading())
-
         try {
-            val coinDetails = api.getCoinDetails(coinId).toCoinDetails()
-            emit(Resource.Success(data = coinDetails))
+            val remoteCoinDetails = api.getCoinDetails(coinId)
+            emit(Resource.Success(data = remoteCoinDetails.toCoinDetails()))
         } catch (e: HttpException) {
             emit(Resource.Error(message = "Oops, something went wrong"))
         } catch (e: IOException) {

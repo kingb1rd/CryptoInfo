@@ -20,7 +20,7 @@ fun CryptoInfoTheme(content: @Composable () -> Unit) {
     val systemUiController = rememberSystemUiController()
 
     systemUiController.setSystemBarsColor(
-        color = Color.DarkGray
+        color = Color(0xFF202020)
     )
 
     MaterialTheme(

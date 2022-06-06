@@ -9,5 +9,5 @@ data class CoinDetails(
     val description: String,
     val isActive: Boolean,
     val tags: List<String>,
-    val teamMembers: List<TeamMember>
+    val team: List<TeamMember>
 )
