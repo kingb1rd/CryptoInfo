@@ -6,7 +6,9 @@ import com.infoechebo.cryptoinfo.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetCoinsUseCase(private val repository: CoinRepository) {
-    operator fun invoke(): Flow<Resource<List<Coin>>> {
-        return repository.getCoinsTickers()
+    operator fun invoke(
+        query: String? = ""
+    ): Flow<Resource<List<Coin>>> {
+        return repository.getCoinsTickers(query)
     }
 }

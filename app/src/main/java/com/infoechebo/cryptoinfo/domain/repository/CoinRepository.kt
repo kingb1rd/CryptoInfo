@@ -6,6 +6,9 @@ import com.infoechebo.cryptoinfo.domain.model.CoinDetails
 import kotlinx.coroutines.flow.Flow
 
 interface CoinRepository {
-    fun getCoinsTickers(): Flow<Resource<List<Coin>>>
+    fun getCoinsTickers(
+        query: String? = ""
+    ): Flow<Resource<List<Coin>>>
+
     fun getCoinDetails(coinId: String): Flow<Resource<CoinDetails>>
 }

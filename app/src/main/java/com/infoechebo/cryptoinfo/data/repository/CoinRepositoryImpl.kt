@@ -19,7 +19,18 @@ class CoinRepositoryImpl(
     private val dao: CoinDao
 ) : CoinRepository {
 
-    override fun getCoinsTickers(): Flow<Resource<List<Coin>>> = flow {
+    override fun getCoinsTickers(
+        query: String?
+    ): Flow<Resource<List<Coin>>> = flow {
+
+        if (query != null) {
+            emit(Resource.Loading())
+            val localCoins = dao.searchCoins(query).map { it.toCoin() }
+            emit(Resource.Loading(data = localCoins))
+            emit(Resource.Success(localCoins))
+            return@flow
+        }
+
         emit(Resource.Loading())
         val localCoins = dao.getCoins().map { it.toCoin() }
         emit(Resource.Loading(data = localCoins))
