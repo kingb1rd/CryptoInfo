@@ -24,11 +24,19 @@ class CoinRepositoryImpl(
     ): Flow<Resource<List<Coin>>> = flow {
 
         if (query != null) {
-            emit(Resource.Loading())
-            val localCoins = dao.searchCoins(query).map { it.toCoin() }
-            emit(Resource.Loading(data = localCoins))
-            emit(Resource.Success(localCoins))
-            return@flow
+            if (query.isNotBlank() && query.isNotEmpty()) {
+                emit(Resource.Loading())
+                val localCoins = dao.searchCoins(query).map { it.toCoin() }
+                emit(Resource.Loading(data = localCoins))
+                emit(Resource.Success(localCoins))
+                return@flow
+            } else {
+                emit(Resource.Loading())
+                val localCoins = dao.getCoins().map { it.toCoin() }
+                emit(Resource.Loading(data = localCoins))
+                emit(Resource.Success(localCoins))
+                return@flow
+            }
         }
 
         emit(Resource.Loading())
