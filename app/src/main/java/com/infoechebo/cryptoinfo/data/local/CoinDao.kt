@@ -17,6 +17,6 @@ interface CoinDao {
     @Query("SELECT * FROM coinentity")
     suspend fun getCoins(): List<CoinEntity>
 
-    @Query("SELECT * FROM coinentity WHERE name LIKE '%' || :query || '%'")
+    @Query("SELECT * FROM coinentity WHERE name LIKE '%' || :query || '%' OR symbol LIKE '%' || :query || '%'")
     suspend fun searchCoins(query: String): List<CoinEntity>
 }

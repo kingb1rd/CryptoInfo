@@ -3,6 +3,7 @@ package com.infoechebo.cryptoinfo.mapper
 import com.infoechebo.cryptoinfo.data.local.entity.CoinEntity
 import com.infoechebo.cryptoinfo.data.remote.dto.CoinDetailsDto
 import com.infoechebo.cryptoinfo.data.remote.dto.CoinTickersDto
+import com.infoechebo.cryptoinfo.data.remote.dto.Tag
 import com.infoechebo.cryptoinfo.domain.model.Coin
 import com.infoechebo.cryptoinfo.domain.model.CoinDetails
 
@@ -41,10 +42,10 @@ fun CoinDetailsDto.toCoinDetails(): CoinDetails {
         rank = rank,
         name = name,
         symbol = symbol,
-        description = description,
+        description = if (description.isNullOrBlank()) "" else description,
         isActive = isActive,
-        tags = tags.map { it.name },
-        team = team
+        tags = (if (tags.isNullOrEmpty()) emptyList<Tag>() else tags.map { it.name }) as List<String>,
+        team = if (team.isNullOrEmpty()) emptyList() else team
     )
 }
 

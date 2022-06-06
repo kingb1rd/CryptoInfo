@@ -3,7 +3,7 @@ package com.infoechebo.cryptoinfo.data.remote.dto
 import com.google.gson.annotations.SerializedName
 
 data class CoinDetailsDto(
-    val description: String,
+    val description: String?,
     @SerializedName("development_status")
     val developmentStatus: String,
     @SerializedName("first_data_at")

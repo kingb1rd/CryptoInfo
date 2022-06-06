@@ -81,7 +81,7 @@ fun CoinDetailsScreen(
                         crossAxisSpacing = 10.dp,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        coinDetails.tags.forEach {
+                        coinDetails.tags!!.forEach {
                             CoinTag(tag = it)
                         }
                     }
