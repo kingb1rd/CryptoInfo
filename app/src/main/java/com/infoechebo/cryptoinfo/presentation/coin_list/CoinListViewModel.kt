@@ -19,6 +19,9 @@ class CoinListViewModel(private val getCoinsUseCase: GetCoinsUseCase) : ViewMode
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
+    private val _searchQuery = mutableStateOf("")
+    val searchQuery: State<String> = _searchQuery
+
     init {
         getCoins()
     }
@@ -27,6 +30,10 @@ class CoinListViewModel(private val getCoinsUseCase: GetCoinsUseCase) : ViewMode
         _state.value = CoinListState(isRefreshing = true)
         getCoins()
         _state.value = CoinListState(isRefreshing = false)
+    }
+
+    fun onSearch(query: String){
+
     }
 
     private fun getCoins() {
