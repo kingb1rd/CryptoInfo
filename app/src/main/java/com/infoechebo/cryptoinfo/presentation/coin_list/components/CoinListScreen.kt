@@ -53,6 +53,8 @@ fun CoinListScreen(
                 value = viewModel.searchQuery.value,
                 onValueChange = viewModel::onSearch,
                 modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                maxLines = 1,
                 placeholder = {
                     Text(text = "Search...")
                 }
